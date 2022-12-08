@@ -93,13 +93,17 @@ mydb.commit()
 
 
 
+
+#Appliance consumption
+date_time_str = input("Insert starting date for appliance consumption (YYYY-MM-DD HH:MM:SS):\n")
+nr_entries = int(input("Insert number of entries: "))
+#appliance_name = input("Insert appliance name: ")
 #QUERY TO GET MAX CONSUMPTION
 mycursor.execute("SELECT maxConsumption FROM Appliance WHERE id = " + str(appliance1))
 maxConsumptionApp1 = float(mycursor.fetchone()[0])
 
-#Appliance consumption
-date_time_str = '2022-12-01 10:27:03'
-for i in range(0,10):
+
+for i in range(0,nr_entries):
   new_date_time_str = date_time_str.split(":")[0] + ":" + str(int(date_time_str.split(":")[1]) + i) + ":" + date_time_str.split(":")[2] 
   mycursor.execute("""INSERT into Appliance_consumption (applianceID, ts, consumption) values(%s,%s,%s)""",(str(appliance1), new_date_time_str, str(float(random.randint(0,int(maxConsumptionApp1))))))
 mydb.commit()
