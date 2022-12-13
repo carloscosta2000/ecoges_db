@@ -6,10 +6,9 @@ import hashlib
 
 mydb = mysql.connector.connect(
   host="localhost",
-  user="seed",
-  password="deesdees",
-  database="ecoges"
-
+  user="sammy",
+  password="password",
+  database="remotedb"
 )
 mycursor = mydb.cursor()
 
