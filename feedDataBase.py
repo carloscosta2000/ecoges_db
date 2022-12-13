@@ -2,6 +2,7 @@ import sys
 import mysql.connector
 from datetime import datetime
 import random
+import hashlib
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -108,3 +109,6 @@ for i in range(0,nr_entries):
   mycursor.execute("""INSERT into Appliance_consumption (applianceID, ts, consumption) values(%s,%s,%s)""",(str(appliance1), new_date_time_str, str(float(random.randint(0,int(maxConsumptionApp1))))))
 mydb.commit()
 
+mycursor.execute("""INSERT INTO Session_table (clientID, ts, rnd_hash) VALUES (%s, %s, %s)""",(str(client1ID), datetime.now().strftime("%Y-%m-%d %H:%M:%S"), hashlib.sha256(bytes(random.randint(0,100000))).hexdigest()))
+session = mycursor.lastrowid
+mydb.commit()
