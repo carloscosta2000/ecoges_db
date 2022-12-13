@@ -57,6 +57,8 @@ CREATE TABLE Appliance (
     maxConsumption DOUBLE NOT NULL,
     isProducing BOOLEAN NOT NULL,
     contractID int NOT NULL,
+    clientID int NOT NULL,
+    FOREIGN KEY (clientID) REFERENCES Client(id),
     FOREIGN KEY (contractID) REFERENCES Contract(id),
     PRIMARY KEY (id)
 );

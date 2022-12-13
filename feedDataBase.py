@@ -64,17 +64,17 @@ mycursor.execute(sqlRoleSystemManager)
 systemManagerD = mycursor.lastrowid
 
 #APPLIANCE1
-sqlAppliance1 = "INSERT INTO Appliance (nome, maxConsumption, isProducing, contractID) VALUES ('Microondas', 5.0, FALSE, " + str(flatRateID) + ")"
+sqlAppliance1 = "INSERT INTO Appliance (nome, maxConsumption, isProducing, contractID, clientID) VALUES ('Microondas', 5.0, FALSE, " + str(flatRateID) + ", 1)"
 mycursor.execute(sqlAppliance1)
 appliance1 = mycursor.lastrowid
 
 #APPLIANCE2
-sqlAppliance2 = "INSERT INTO Appliance (nome, maxConsumption, isProducing, contractID) VALUES ('Frigorífico', 20.0, FALSE, " + str(biHourRateID) + ")"
+sqlAppliance2 = "INSERT INTO Appliance (nome, maxConsumption, isProducing, contractID, clientID) VALUES ('Frigorífico', 20.0, FALSE, " + str(biHourRateID) + ", 1)"
 mycursor.execute(sqlAppliance2)
 appliance2 = mycursor.lastrowid
 
 #APPLIANCE3
-sqlAppliance3 = "INSERT INTO Appliance (nome, maxConsumption, isProducing, contractID) VALUES ('Painéis Solares', 40.0, TRUE, " + str(biHourRateID) + ")"
+sqlAppliance3 = "INSERT INTO Appliance (nome, maxConsumption, isProducing, contractID, clientID) VALUES ('Painéis Solares', 40.0, TRUE, " + str(biHourRateID) + ", 2)"
 mycursor.execute(sqlAppliance3)
 appliance3 = mycursor.lastrowid
 
