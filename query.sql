@@ -21,7 +21,8 @@ CREATE TABLE Client (
     username varchar(255) NOT NULL,
     nome varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    morada varchar(255) NOT NULL,
+    morada varchar(255),
+    publickey varchar(128),
     PRIMARY KEY (id)
 );
 
