@@ -77,7 +77,7 @@ CREATE TABLE Session_table (
     id int NOT NULL AUTO_INCREMENT,
     clientID int NOT NULL,
     ts TIMESTAMP NOT NULL,
-    rnd_hash VARCHAR(64) NOT NULL,
+    rnd_hash VARCHAR(256) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (clientID) REFERENCES Client(id)
 );
