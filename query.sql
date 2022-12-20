@@ -22,7 +22,7 @@ CREATE TABLE Client (
     nome varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     morada varchar(255),
-    publickey varchar(128),
+    publickey varchar(1000),
     PRIMARY KEY (id)
 );
 
