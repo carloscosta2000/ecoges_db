@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS remotedb;
 CREATE DATABASE IF NOT EXISTS remotedb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS Keysession_table;
 DROP TABLE IF EXISTS Session_table;
 DROP TABLE IF EXISTS Appliance_consumption;
 DROP TABLE IF EXISTS Appliance;
@@ -80,4 +81,11 @@ CREATE TABLE Session_table (
     rnd_hash VARCHAR(256) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (clientID) REFERENCES Client(id)
+);
+
+CREATE TABLE Keysession_table (
+    keysession VARCHAR(500) NOT NULL,
+    rnd_hash VARCHAR(256) NOT NULL,
+    ts TIMESTAMP NOT NULL,
+    PRIMARY KEY (keysession)
 );
