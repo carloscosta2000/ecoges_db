@@ -24,10 +24,10 @@ CREATE TABLE Client (
     password varchar(255) NOT NULL,
     morada varchar(255),
     publickey varchar(1000),
-    nif varchar(500),
-    iban varchar(500),
-    email  varchar(500),
-    telefone  varchar(500),
+    nif varchar(550),
+    iban varchar(550),
+    email  varchar(550),
+    telefone  varchar(550),
     PRIMARY KEY (id)
 );
 
