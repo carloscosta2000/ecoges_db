@@ -26,7 +26,7 @@ CREATE TABLE Client (
     username varchar(255) NOT NULL,
     nome varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    morada varchar(255),
+    morada varchar(550),
     publickey varchar(1000),
     nif varchar(550),
     iban varchar(550),
