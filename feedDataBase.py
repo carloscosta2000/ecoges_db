@@ -25,25 +25,25 @@ biHourRateID = mycursor.lastrowid
 
 #CLIENT1
 pass1 = hashlib.sha512("p1".encode("utf-8")).hexdigest()
-sqlClient1 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u1', 'n1', '" + str(pass1) + "', 'm1')"
+sqlClient1 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u1', 'n1', '" + str(pass1) + "', 'm1', 'pubkey')"
 mycursor.execute(sqlClient1)
 client1ID = mycursor.lastrowid
 
 #CLIENT2
 pass2 = hashlib.sha512("p2".encode("utf-8")).hexdigest()
-sqlClient2 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u2', 'n2', '" + str(pass2) + "', 'm2')"
+sqlClient2 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u2', 'n2', '" + str(pass2) + "', 'm2', 'pubkey')"
 mycursor.execute(sqlClient2)
 client2ID = mycursor.lastrowid
 
 #CLIENT3
 pass3 = hashlib.sha512("p3".encode("utf-8")).hexdigest()
-sqlClient3 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u3', 'n3', '" + str(pass3) + "', 'm3')"
+sqlClient3 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u3', 'n3', '" + str(pass3) + "', 'm3', 'pubkey')"
 mycursor.execute(sqlClient3)
 client3ID = mycursor.lastrowid
 
 #CLIENT4
 pass4 = hashlib.sha512("p4".encode("utf-8")).hexdigest()
-sqlClient4 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u4', 'n4', '" + str(pass4) + "', 'm4')"
+sqlClient4 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u4', 'n4', '" + str(pass4) + "', 'm4', 'pubkey')"
 mycursor.execute(sqlClient4)
 client4ID = mycursor.lastrowid
 
@@ -63,7 +63,7 @@ mycursor.execute(sqlRoleTechnicalAssistant)
 technicalAssistantID = mycursor.lastrowid
 
 #ROLE4
-sqlRoleSystemManager = "INSERT INTO Role (tipo) VALUES ('Team Manager')"
+sqlRoleSystemManager = "INSERT INTO Role (tipo) VALUES ('System Manager')"
 mycursor.execute(sqlRoleSystemManager)
 systemManagerD = mycursor.lastrowid
 
@@ -83,16 +83,20 @@ mycursor.execute(sqlAppliance3)
 appliance3 = mycursor.lastrowid
 
 #EMPLOYEE1
-mycursor.execute("""INSERT INTO Employee (username, nome, password, roleID) VALUES (%s, %s, %s, %s)""",('une1', 'e1', 'p1', accountManagerID))
+pass1 = hashlib.sha512("p1".encode("utf-8")).hexdigest()
+mycursor.execute("""INSERT INTO Employee (username, nome, password, roleID) VALUES (%s, %s, %s, %s)""",('une1', 'e1', pass1, accountManagerID))
 employee1 = mycursor.lastrowid
 
 #EMPLOYEE2
-mycursor.execute("""INSERT INTO Employee (username, nome, password, roleID) VALUES (%s, %s, %s, %s)""",('une2', 'e2', 'p2', technicalAssistantID))
+pass2 = hashlib.sha512("p2".encode("utf-8")).hexdigest()
+mycursor.execute("""INSERT INTO Employee (username, nome, password, roleID) VALUES (%s, %s, %s, %s)""",('une2', 'e2', pass2, technicalAssistantID))
 employee2 = mycursor.lastrowid
 
-#RATE1
-mycursor.execute("""INSERT INTO Rates (rate, initial, finish, contractID) VALUES (%s, %s, %s, %s)""",(5.0, '1970-01-01 15:00:00', '1970-01-01 17:00:00', flatRateID))
-employee2 = mycursor.lastrowid
+
+#RATES
+mycursor.execute("""INSERT INTO Bi_Hour_Rate (rate1, rate2, initial, finish, contractID) VALUES (%s, %s, %s, %s, %s)""", (5.0, 7.0, '1970-01-01 15:00:00', '1970-01-01 17:00:00', biHourRateID))
+mycursor.execute("""INSERT INTO Flat_Rate (rate, contractID) VALUES (%s, %s)""", (4.0, flatRateID))
+
 mydb.commit()
 
 

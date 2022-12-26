@@ -1,11 +1,14 @@
 DROP DATABASE IF EXISTS remotedb;
 CREATE DATABASE IF NOT EXISTS remotedb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS Adds;
 DROP TABLE IF EXISTS Keysession_table;
 DROP TABLE IF EXISTS Session_table;
 DROP TABLE IF EXISTS Appliance_consumption;
 DROP TABLE IF EXISTS Appliance;
 DROP TABLE IF EXISTS Rates;
+DROP TABLE IF EXISTS Bi_Hour_Rate;
+DROP TABLE IF EXISTS Flat_Rate;
 DROP TABLE IF EXISTS Contract;
 DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Client;
@@ -16,6 +19,7 @@ CREATE TABLE Role (
     tipo varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
 
 CREATE TABLE Client (
     id int NOT NULL AUTO_INCREMENT,
@@ -47,14 +51,23 @@ CREATE TABLE Contract (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE Rates (
+CREATE TABLE Flat_Rate (
     id int NOT NULL AUTO_INCREMENT,
     rate DOUBLE NOT NULL,
-    initial TIMESTAMP,
+    contractID int NOT NULL,
+    FOREIGN KEY (contractID) REFERENCES Contract(id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Bi_Hour_Rate (
+    id int NOT NULL AUTO_INCREMENT,
+    rate1 DOUBLE NOT NULL, 
+    rate2 DOUBLE NOT NULL, 
+    initial TIMESTAMP, 
     finish TIMESTAMP,
     contractID int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (contractID) REFERENCES Contract(id)
+    FOREIGN KEY (contractID) REFERENCES Contract(id),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Appliance (
@@ -92,4 +105,9 @@ CREATE TABLE Keysession_table (
     rnd_hash VARCHAR(256) NOT NULL,
     ts TIMESTAMP NOT NULL,
     PRIMARY KEY (keysession)
+);
+CREATE TABLE Adds (
+    id int NOT NULL AUTO_INCREMENT,
+    content VARCHAR(256) NOT NULL,
+    PRIMARY KEY (id)
 );
