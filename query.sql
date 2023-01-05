@@ -20,7 +20,6 @@ CREATE TABLE Role (
     PRIMARY KEY (id)
 );
 
-
 CREATE TABLE Client (
     id int NOT NULL AUTO_INCREMENT,
     username varchar(255) NOT NULL,
