@@ -25,12 +25,12 @@ CREATE TABLE Client (
     username varchar(255) NOT NULL,
     nome varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    morada varchar(255),
+    morada varchar(550),
     publickey varchar(1000),
-    nif varchar(500),
-    iban varchar(500),
-    email  varchar(500),
-    telefone  varchar(500),
+    nif varchar(550),
+    iban varchar(550),
+    email  varchar(550),
+    telefone  varchar(550),
     PRIMARY KEY (id)
 );
 
@@ -105,7 +105,6 @@ CREATE TABLE Keysession_table (
     ts TIMESTAMP NOT NULL,
     PRIMARY KEY (keysession)
 );
-
 CREATE TABLE Adds (
     id int NOT NULL AUTO_INCREMENT,
     content VARCHAR(256) NOT NULL,
