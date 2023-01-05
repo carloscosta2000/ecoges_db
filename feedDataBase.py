@@ -1,8 +1,12 @@
+import binascii
 import sys
 import mysql.connector
 from datetime import datetime
 import random
 import hashlib
+import random
+import string
+import os
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -24,26 +28,30 @@ mycursor.execute(sqlContract)
 biHourRateID = mycursor.lastrowid
 
 #CLIENT1
-pass1 = hashlib.sha512("p1".encode("utf-8")).hexdigest()
-sqlClient1 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u1', 'n1', '" + str(pass1) + "', 'm1')"
+salt1 = binascii.b2a_hex(os.urandom(8)).decode("utf-8")
+pass1 = salt1 + hashlib.sha512(salt1 + "p1".encode("utf-8")).hexdigest()
+sqlClient1 = "INSERT INTO Client (username, nome, password, morada, salt) VALUES ('u1', 'n1', '" + str(pass1) + "', 'm1', '" + str(salt1) +"')"
 mycursor.execute(sqlClient1)
 client1ID = mycursor.lastrowid
 
 #CLIENT2
-pass2 = hashlib.sha512("p2".encode("utf-8")).hexdigest()
-sqlClient2 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u2', 'n2', '" + str(pass2) + "', 'm2')"
+salt2 = binascii.b2a_hex(os.urandom(8)).decode("utf-8")
+pass2 = salt2 + hashlib.sha512(salt2 + "p2".encode("utf-8")).hexdigest()
+sqlClient2 = "INSERT INTO Client (username, nome, password, morada, salt) VALUES ('u2', 'n2', '" + str(pass2) + "', 'm2', '" + str(salt2) + "')"
 mycursor.execute(sqlClient2)
 client2ID = mycursor.lastrowid
 
 #CLIENT3
-pass3 = hashlib.sha512("p3".encode("utf-8")).hexdigest()
-sqlClient3 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u3', 'n3', '" + str(pass3) + "', 'm3')"
+salt3 = binascii.b2a_hex(os.urandom(8)).decode("utf-8")
+pass3 = salt3 + hashlib.sha512(salt3 + "p3".encode("utf-8")).hexdigest()
+sqlClient3 = "INSERT INTO Client (username, nome, password, morada, salt) VALUES ('u3', 'n3', '" + str(pass3) + "', 'm3', '" + str(salt3) + "')"
 mycursor.execute(sqlClient3)
 client3ID = mycursor.lastrowid
 
 #CLIENT4
-pass4 = hashlib.sha512("p4".encode("utf-8")).hexdigest()
-sqlClient4 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u4', 'n4', '" + str(pass4) + "', 'm4')"
+salt4 = binascii.b2a_hex(os.urandom(8)).decode("utf-8")
+pass4 = salt4 + hashlib.sha512(salt4 + "p3".encode("utf-8")).hexdigest()
+sqlClient4 = "INSERT INTO Client (username, nome, password, morada, salt) VALUES ('u4', 'n4', '" + str(pass4) + "', 'm4', '" + str(salt4) + "')"
 mycursor.execute(sqlClient4)
 client4ID = mycursor.lastrowid
 
