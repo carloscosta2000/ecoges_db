@@ -25,25 +25,25 @@ biHourRateID = mycursor.lastrowid
 
 #CLIENT1
 pass1 = hashlib.sha512("p1".encode("utf-8")).hexdigest()
-sqlClient1 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u1', 'n1', '" + str(pass1) + "', 'm1', 'pubkey')"
+sqlClient1 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u1', 'n1', '" + str(pass1) + "', 'm1')"
 mycursor.execute(sqlClient1)
 client1ID = mycursor.lastrowid
 
 #CLIENT2
 pass2 = hashlib.sha512("p2".encode("utf-8")).hexdigest()
-sqlClient2 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u2', 'n2', '" + str(pass2) + "', 'm2', 'pubkey')"
+sqlClient2 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u2', 'n2', '" + str(pass2) + "', 'm2')"
 mycursor.execute(sqlClient2)
 client2ID = mycursor.lastrowid
 
 #CLIENT3
 pass3 = hashlib.sha512("p3".encode("utf-8")).hexdigest()
-sqlClient3 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u3', 'n3', '" + str(pass3) + "', 'm3', 'pubkey')"
+sqlClient3 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u3', 'n3', '" + str(pass3) + "', 'm3')"
 mycursor.execute(sqlClient3)
 client3ID = mycursor.lastrowid
 
 #CLIENT4
 pass4 = hashlib.sha512("p4".encode("utf-8")).hexdigest()
-sqlClient4 = "INSERT INTO Client (username, nome, password, morada, publickey) VALUES ('u4', 'n4', '" + str(pass4) + "', 'm4', 'pubkey')"
+sqlClient4 = "INSERT INTO Client (username, nome, password, morada) VALUES ('u4', 'n4', '" + str(pass4) + "', 'm4')"
 mycursor.execute(sqlClient4)
 client4ID = mycursor.lastrowid
 
